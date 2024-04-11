@@ -1,0 +1,936 @@
+
+参考
+https://github.com/gurishunin/udemy_flask_memo
+
+
+
+C:\Users\work>mkdir C:\Users\work\project-app\pg1-flask
+
+
+
+C:\Users\work>C:\Users\work\app\python\python-3810\windows\branch\python-3810-virtualenv\python.exe -m virtualenv C:\Users\work\project-app\pg1-flask\venv
+created virtual environment CPython3.8.10.final.0-64 in 290ms
+  creator CPython3Windows(dest=C:\Users\work\project-app\pg1-flask\venv, clear=False, no_vcs_ignore=False, global=False)
+  seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=C:\Users\work\AppData\Local\pypa\virtualenv)
+    added seed packages: pip==24.0, setuptools==69.1.1, wheel==0.43.0
+  activators BashActivator,BatchActivator,FishActivator,NushellActivator,PowerShellActivator,PythonActivator
+
+
+
+
+flask
+https://flask.palletsprojects.com/en/3.0.x/
+
+
+
+
+C:\Users\work\project-app\pg1-flask\venv\Scripts
+
+
+PS C:\Users\work\project-app\pg1-flask\> cd .\venv\
+PS C:\Users\work\project-app\pg1-flask\venv> cd .\Scripts\
+PS C:\Users\work\project-app\pg1-flask\venv\Scripts>
+PS C:\Users\work\project-app\pg1-flask\venv\Scripts> .\activate
+(venv) PS C:\Users\work\project-app\pg1-flask\venv\Scripts>
+(venv) PS C:\Users\work\project-app\pg1-flask\venv\Scripts>
+
+
+(venv) PS C:\Users\work\project-app\pg1-flask\venv\Scripts> .\pip.exe list
+Package    Version
+---------- -------
+pip        24.0
+setuptools 69.1.1
+wheel      0.43.0
+
+
+
+(venv) C:\Users\work\project-app\pg1-flask\venv\Scripts>.\pip.exe install flask==3.0.0
+Collecting flask==3.0.0
+  Using cached flask-3.0.0-py3-none-any.whl.metadata (3.6 kB)
+Collecting Werkzeug>=3.0.0 (from flask==3.0.0)
+  Using cached werkzeug-3.0.2-py3-none-any.whl.metadata (4.1 kB)
+Collecting Jinja2>=3.1.2 (from flask==3.0.0)
+  Using cached Jinja2-3.1.3-py3-none-any.whl.metadata (3.3 kB)
+Collecting itsdangerous>=2.1.2 (from flask==3.0.0)
+  Using cached itsdangerous-2.1.2-py3-none-any.whl.metadata (2.9 kB)
+Collecting click>=8.1.3 (from flask==3.0.0)
+  Using cached click-8.1.7-py3-none-any.whl.metadata (3.0 kB)
+Collecting blinker>=1.6.2 (from flask==3.0.0)
+  Using cached blinker-1.7.0-py3-none-any.whl.metadata (1.9 kB)
+Collecting importlib-metadata>=3.6.0 (from flask==3.0.0)
+  Using cached importlib_metadata-7.1.0-py3-none-any.whl.metadata (4.7 kB)
+Collecting colorama (from click>=8.1.3->flask==3.0.0)
+  Using cached colorama-0.4.6-py2.py3-none-any.whl.metadata (17 kB)
+Collecting zipp>=0.5 (from importlib-metadata>=3.6.0->flask==3.0.0)
+  Using cached zipp-3.18.1-py3-none-any.whl.metadata (3.5 kB)
+Collecting MarkupSafe>=2.0 (from Jinja2>=3.1.2->flask==3.0.0)
+  Using cached MarkupSafe-2.1.5-cp38-cp38-win_amd64.whl.metadata (3.1 kB)
+Using cached flask-3.0.0-py3-none-any.whl (99 kB)
+Using cached blinker-1.7.0-py3-none-any.whl (13 kB)
+Using cached click-8.1.7-py3-none-any.whl (97 kB)
+Using cached importlib_metadata-7.1.0-py3-none-any.whl (24 kB)
+Using cached itsdangerous-2.1.2-py3-none-any.whl (15 kB)
+Using cached Jinja2-3.1.3-py3-none-any.whl (133 kB)
+Using cached werkzeug-3.0.2-py3-none-any.whl (226 kB)
+Using cached MarkupSafe-2.1.5-cp38-cp38-win_amd64.whl (17 kB)
+Using cached zipp-3.18.1-py3-none-any.whl (8.2 kB)
+Using cached colorama-0.4.6-py2.py3-none-any.whl (25 kB)
+Installing collected packages: zipp, MarkupSafe, itsdangerous, colorama, blinker, Werkzeug, Jinja2, importlib-metadata, click, flask
+Successfully installed Jinja2-3.1.3 MarkupSafe-2.1.5 Werkzeug-3.0.2 blinker-1.7.0 click-8.1.7 colorama-0.4.6 flask-3.0.0 importlib-metadata-7.1.0 itsdangerous-2.1.2 zipp-3.18.1
+
+
+
+
+
+
+
+
+
+(venv) C:\Users\work\project-app\pg1-flask\venv\Scripts>flask --version
+Python 3.8.10
+Flask 3.0.0
+Werkzeug 3.0.2
+
+
+
+
+
+
+
+(venv) C:\Users\work\project-app\pg1-flask\venv\Scripts>.\pip.exe list 
+Package            Version
+------------------ -------
+blinker            1.7.0
+click              8.1.7
+colorama           0.4.6
+Flask              3.0.0
+importlib_metadata 7.1.0
+itsdangerous       2.1.2
+Jinja2             3.1.3
+MarkupSafe         2.1.5
+pip                24.0
+setuptools         69.1.1
+Werkzeug           3.0.2
+wheel              0.43.0
+zipp               3.18.1
+
+
+
+
+app.py
+```
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def hello_world():
+    return "<p>Hello, World!</p>"
+
+
+if __name__ == "__main__":
+    app.run()
+```
+
+
+開発環境設定
+環境変数
+
+
+Windows(CMD)※コマンドプロンプト
+
+プログラム名を設定app.pyの場合は、app
+```
+set FLASK_APP=app
+set FLASK_ENV=development
+flask run
+```
+
+```
+set FLASK_APP=appとset FLASK_ENV=developmentとflask runのコマンドは、Windows環境でFlaskアプリケーションを起動するための手順です。これらのコマンドは通常、コマンドプロンプトまたはPowerShellなどのターミナルで実行されます。
+
+これらのコマンドを実行することで、Flaskアプリケーションの起動に関する情報が一時的に環境変数に設定されます。具体的には、以下のようなことが行われます。
+
+set FLASK_APP=app: このコマンドは、Flaskアプリケーションのエントリポイントを指定する環境変数FLASK_APPを設定します。appはFlaskアプリケーションのエントリポイントファイル（通常はapp.pyなど）の名前です。
+
+set FLASK_ENV=development: このコマンドは、Flaskアプリケーションの実行環境を指定する環境変数FLASK_ENVを設定します。developmentは開発環境を意味しますが、productionやtestingなど他の値を設定することもできます。
+
+flask run: このコマンドは、Flaskアプリケーションを起動します。FLASK_APPで指定されたファイルがFlaskアプリケーションのエントリポイントとして使用され、FLASK_ENVで指定された環境でアプリケーションが実行されます。
+
+これらのコマンドは、実行されたターミナルのセッションにのみ影響します。したがって、これらの環境変数の設定はセッションが終了すると失われます。このため、これらの設定を永続的にするには、通常はプロジェクトの環境設定ファイル（たとえば.envファイル）にこれらの設定を保存するか、またはシステムの環境変数として設定する必要があります。
+```
+
+
+echo %FLASK_APP%
+echo %FLASK_ENV%
+
+
+反映確認
+
+(venv) C:\Users\work\project-app\pg1-flask\venv\Scripts>echo %FLASK_APP%
+app
+
+(venv) C:\Users\work\project-app\pg1-flask\venv\Scripts>echo %FLASK_ENV%
+development
+
+
+
+
+
+
+
+(venv) C:\Users\work\project-app\pg1-flask\venv\Scripts>cd .. 
+
+(venv) C:\Users\work\project-app\pg1-flask\venv>cd ..
+
+(venv) C:\Users\work\project-app\pg1-flask>
+
+
+(venv) C:\Users\work\project-app\pg1-flask>flask run
+ * Serving Flask app 'app'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:5000
+Press CTRL+C to quit
+
+
+
+
+
+
+開発設定が反映されてない
+ * Serving Flask app 'app'
+ * Debug mode: off
+
+
+
+
+
+ルートにconfig.py
+```
+class Config:
+    DEBUG = True
+    FLASK_APP = "app"
+    # その他の設定をここに追加する
+```
+
+app.py
+```
+from flask import Flask
+
+app = Flask(__name__)
+
+# Flaskアプリケーションに設定を読み込む
+app.config.from_pyfile('config.py', silent=True)
+
+# デバッグモードを確認するためにアプリケーションの設定を出力する
+print("DEBUG mode:", app.debug)
+
+@app.route("/")
+def hello_world():
+    return "<p>aaadddd</p>"
+
+
+if __name__ == "__main__":
+    app.run()
+```
+
+
+(venv) C:\Users\work\project-app\pg1-flask>flask run
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:5000
+Press CTRL+C to quit
+
+
+
+
+
+うまくいかない
+
+
+
+
+
+
+
+set FLASK_APP=app
+
+--debugを付けたらうまくいった
+
+(venv) C:\Users\work\project-app\pg1-flask>flask run --debug
+ * Serving Flask app 'app'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:5000
+Press CTRL+C to quit
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 104-679-999
+127.0.0.1 - - [10/Apr/2024 07:22:30] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [10/Apr/2024 07:22:30] "GET /favicon.ico HTTP/1.1" 404 -
+ * Detected change in 'C:\\Users\\work\\project-app\\pg1-flask\\app.py', reloading
+ * Restarting with stat
+DEBUG mode: True
+ * Debugger is active!
+ * Debugger PIN: 104-679-999
+127.0.0.1 - - [10/Apr/2024 07:22:49] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [10/Apr/2024 07:22:50] "GET / HTTP/1.1" 200 -
+
+
+
+
+app.py
+```
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def hello_world():
+    return "<p>aad</p>"
+
+
+if __name__ == "__main__":
+    app.run()
+```
+
+config.pyは消した
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% extends "base.html" %}
+{% block content %}
+<h1>メモアプリ</h1>
+    <a href="/regist" role="botton">新規登録</a>
+    {% if memo_list == [] %}
+        <p>メモは登録されていません</p>
+    {% else %}
+        <table border="1">
+            <tr>
+                <th>タイトル</th>
+                <th>メモ</th>
+                <th></th>
+            </tr>
+            {% for memo in memo_list %}
+                <tr>
+                    <td>{{memo.title}}</td>   
+                    <td>{{memo.body}}</td>
+                    <td>
+                        <a href="/{{memo.id}}/edit" role="button">編集</a>
+                        <a href="/{{memo.id}}/delete" role="button">削除</a>
+                    </td>                 
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}
+
+
+
+CSSでいい感じにしたい
+ChatGPT
+以下は、提供された HTML コードに対して基本的な CSS スタイルを追加する例です。このスタイルは、表のデザインを向上させ、ボタンを整えます。もちろん、デザインの好みに合わせて調整してください。
+
+css
+Copy code
+/* CSS スタイル */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+    padding: 0.5em 1em;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    margin-right: 0.5em;
+    display: inline-block;
+}
+
+a:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1em;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 0.5em;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+この CSS スタイルを適用すると、テーブルが整然として見やすくなり、リンクされたボタンが装飾されます。ただし、このスタイルはあくまで例です。デザインの要件や好みに応じて調整してください。
+
+{% extends "base.html" %}
+{% block content %}
+<h1>メモアプリ</h1>
+    <a href="/regist" role="botton">新規登録</a>
+    {% if memo_list == [] %}
+        <p>メモは登録されていません</p>
+    {% else %}
+        <table border="1">
+            <tr>
+                <th>タイトル</th>
+                <th>メモ</th>
+                <th></th>
+            </tr>
+            {% for memo in memo_list %}
+                <tr>
+                    <td>{{memo.title}}</td>   
+                    <td>{{memo.body}}</td>
+                    <td>
+                        <a href="/{{memo.id}}/edit" role="button">編集</a>
+                        <a href="/{{memo.id}}/delete" role="button">削除</a>
+                    </td>                 
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}
+
+これと同じファイルにCSSを記載したいです。
+
+全文を表示して
+ChatGPT
+理解しました。提供された HTML ファイルに CSS を直接記述することもできます。以下は、CSS を HTML ファイルに直接追加した例です。
+
+html
+Copy code
+{% extends "base.html" %}
+{% block content %}
+<style>
+    /* CSS スタイル */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    a {
+        text-decoration: none;
+        color: #007bff;
+        padding: 0.5em 1em;
+        border: 1px solid #007bff;
+        border-radius: 5px;
+        margin-right: 0.5em;
+        display: inline-block;
+    }
+
+    a:hover {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1em;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 0.5em;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<h1>メモアプリ</h1>
+    <a href="/regist" role="button">新規登録</a>
+    {% if memo_list == [] %}
+        <p>メモは登録されていません</p>
+    {% else %}
+        <table border="1">
+            <tr>
+                <th>タイトル</th>
+                <th>メモ</th>
+                <th></th>
+            </tr>
+            {% for memo in memo_list %}
+                <tr>
+                    <td>{{memo.title}}</td>   
+                    <td>{{memo.body}}</td>
+                    <td>
+                        <a href="/{{memo.id}}/edit" role="button">編集</a>
+                        <a href="/{{memo.id}}/delete" role="button">削除</a>
+                    </td>                 
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}
+この方法では、CSS スタイルを <style> タグ内に直接記述しています。これにより、HTML ファイル内で完結した形でスタイルを指定することができます。
+
+いい感じです。
+さらにリッチにしてください
+ChatGPT
+理解しました。よりリッチなデザインを適用するために、テーブルの見栄えを向上させ、ボタンをよりインタラクティブにするための追加のスタイルを追加します。以下は、それらのスタイルを追加した完全な HTML ファイルです。
+
+html
+Copy code
+{% extends "base.html" %}
+{% block content %}
+<style>
+    /* 全体のスタイル */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        width: 80%;
+        margin: 0 auto;
+        padding-top: 30px;
+    }
+
+    h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* ボタンのスタイル */
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    /* テーブルのスタイル */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    /* リンクのスタイル */
+    a {
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    a:hover {
+        color: #0056b3;
+    }
+</style>
+
+<div class="container">
+    <h1>メモアプリ</h1>
+    <a href="/regist" class="btn btn-primary" role="button">新規登録</a>
+    {% if memo_list == [] %}
+        <p>メモは登録されていません</p>
+    {% else %}
+        <table>
+            <tr>
+                <th>タイトル</th>
+                <th>メモ</th>
+                <th>操作</th>
+            </tr>
+            {% for memo in memo_list %}
+                <tr>
+                    <td>{{ memo.title }}</td>   
+                    <td>{{ memo.body }}</td>
+                    <td>
+                        <a href="/{{ memo.id }}/edit" class="btn btn-primary" role="button">編集</a>
+                        <a href="/{{ memo.id }}/delete" class="btn btn-primary" role="button">削除</a>
+                    </td>                 
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</div>
+{% endblock %}
+このコードでは、ボタンやテーブル、リンクの見栄えを向上させるためのスタイルが追加されています。見栄えをカスタマイズするには、これらのスタイルを変更してください。
+
+退化しました
+ChatGPT
+申し訳ありません。理解しました。よりリッチなデザインを提供するために、もう一度試みます。以下は、より洗練されたデザインを適用した HTML ファイルです。
+
+html
+Copy code
+{% extends "base.html" %}
+{% block content %}
+<style>
+    /* 全体のスタイル */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        width: 80%;
+        margin: 0 auto;
+        padding-top: 30px;
+    }
+
+    h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* ボタンのスタイル */
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    /* テーブルのスタイル */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    /* リンクのスタイル */
+    a {
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    a:hover {
+        color: #0056b3;
+    }
+</style>
+
+<div class="container">
+    <h1>メモアプリ</h1>
+    <a href="/regist" class="btn btn-primary" role="button">新規登録</a>
+    {% if memo_list == [] %}
+        <p>メモは登録されていません</p>
+    {% else %}
+        <table>
+            <tr>
+                <th>タイトル</th>
+                <th>メモ</th>
+                <th>操作</th>
+            </tr>
+            {% for memo in memo_list %}
+                <tr>
+                    <td>{{ memo.title }}</td>   
+                    <td>{{ memo.body }}</td>
+                    <td>
+                        <a href="/{{ memo.id }}/edit" class="btn btn-primary" role="button">編集</a>
+                        <a href="/{{ memo.id }}/delete" class="btn btn-primary" role="button">削除</a>
+                    </td>                 
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</div>
+{% endblock %}
+このコードでは、ボタンやテーブル、リンクの見栄えを向上させるためのスタイルが追加されています。見栄えをカスタマイズするには、これらのスタイルを変更してください。
+
+いい感じです。
+
+表示されている順番をドラッグアンドドロップでユーザが変えたいです
+ChatGPT
+ドラッグアンドドロップで項目を並び替える機能を実装するには、JavaScript を使用する必要があります。以下は、ドラッグアンドドロップで項目を並び替えるための基本的な方法です。この例では、jQuery UI のドラッグアンドドロップ機能を使用します。
+
+まず、jQuery と jQuery UI を読み込むためのスクリプトを追加します。次に、JavaScript コードでドラッグアンドドロップのロジックを実装します。
+
+html
+Copy code
+{% extends "base.html" %}
+{% block content %}
+<style>
+    /* スタイルは前回提供したものと同じです */
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $("table tbody").sortable({
+        axis: "y",
+        handle: "td:first-child", // ドラッグ可能な要素
+        update: function(event, ui) {
+            // ドロップされた後の処理
+            var memoOrder = $(this).sortable("toArray", { attribute: "data-memo-id" });
+            // memoOrderには項目のIDが新しい順番で格納されます
+            console.log(memoOrder);
+            // ここで、memoOrderをサーバに送信して保存するなどの処理を行います
+        }
+    });
+});
+</script>
+
+<div class="container">
+    <h1>メモアプリ</h1>
+    <a href="/regist" class="btn btn-primary" role="button">新規登録</a>
+    {% if memo_list == [] %}
+        <p>メモは登録されていません</p>
+    {% else %}
+        <table>
+            <thead>
+                <tr>
+                    <th>タイトル</th>
+                    <th>メモ</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for memo in memo_list %}
+                    <tr data-memo-id="{{ memo.id }}">
+                        <td>{{ memo.title }}</td>   
+                        <td>{{ memo.body }}</td>
+                        <td>
+                            <a href="/{{ memo.id }}/edit" class="btn btn-primary" role="button">編集</a>
+                            <a href="/{{ memo.id }}/delete" class="btn btn-primary" role="button">削除</a>
+                        </td>                 
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+{% endblock %}
+このコードでは、テーブルの各行に data-memo-id 属性が追加されています。jQuery UI の sortable() メソッドを使用して、テーブルの行を並び替え可能にし、ドラッグアンドドロップで順序を変更できるようにしています。update イベントでは、ドロップが完了した後に項目の順序を取得し、それをサーバに送信するなどの追加の処理を行うことができます。
+
+機能はうまくいってますが、CSSが外れました。
+ChatGPT
+申し訳ありません。CSS が外れたようですね。HTML ファイルに CSS を直接追加する場合、CSS スタイルの位置に注意する必要があります。jQuery UI のスクリプトよりも後に CSS を配置する必要があります。以下は修正されたコードです。
+
+html
+Copy code
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1>メモアプリ</h1>
+    <a href="/regist" class="btn btn-primary" role="button">新規登録</a>
+    {% if memo_list == [] %}
+        <p>メモは登録されていません</p>
+    {% else %}
+        <table>
+            <thead>
+                <tr>
+                    <th>タイトル</th>
+                    <th>メモ</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for memo in memo_list %}
+                    <tr data-memo-id="{{ memo.id }}">
+                        <td>{{ memo.title }}</td>   
+                        <td>{{ memo.body }}</td>
+                        <td>
+                            <a href="/{{ memo.id }}/edit" class="btn btn-primary" role="button">編集</a>
+                            <a href="/{{ memo.id }}/delete" class="btn btn-primary" role="button">削除</a>
+                        </td>                 
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+
+<style>
+    /* スタイルは前回提供したものと同じです */
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $("table tbody").sortable({
+        axis: "y",
+        handle: "td:first-child", // ドラッグ可能な要素
+        update: function(event, ui) {
+            // ドロップされた後の処理
+            var memoOrder = $(this).sortable("toArray", { attribute: "data-memo-id" });
+            // memoOrderには項目のIDが新しい順番で格納されます
+            console.log(memoOrder);
+            // ここで、memoOrderをサーバに送信して保存するなどの処理を行います
+        }
+    });
+});
+</script>
+
+{% endblock %}
+この修正により、CSS が適切な位置に戻り、ドラッグアンドドロップ機能が引き続き正常に動作します。
+
+
+
+
+
+(venv) PS C:\Users\work\project-git\pg-flask-1> pip3.8 freeze > requirements.txt
+(venv) PS C:\Users\work\project-git\pg-flask-1> python --version
+Python 3.8.10
+
+
+(venv) PS C:\Users\work\project-git\pg-flask-1> pip3.8 freeze                   
+blinker==1.7.0
+click==8.1.7
+colorama==0.4.6
+Flask==3.0.0
+importlib_metadata==7.1.0
+itsdangerous==2.1.2
+Jinja2==3.1.3
+MarkupSafe==2.1.5
+Werkzeug==3.0.2
+zipp==3.18.1
+
+
+Python==3.8.10を追加
+
+
+
+
+(venv) PS C:\Users\work\project-git\pg-flask-1> git add .
+warning: in the working copy of 'app.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'templates/base.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'templates/delete.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'templates/edit.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'templates/index copy 2.html', LF will be replaced by CRLF the next time Git touches it        
+warning: in the working copy of 'templates/index copy.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'templates/index.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'templates/regist.html', LF will be replaced by CRLF the next time Git touches it
+
+warningをすべてなくしたい
+ChatGPT
+Gitが警告を表示しているのは、改行文字がLF（Unixスタイル）からCRLF（Windowsスタイル）に変更される可能性があるためです。これは、おそらくGitの設定に関連しています。
+
+これらの警告を解決するには、.gitattributesファイルを使用してGitに改行文字の処理方法を指示することができます。
+
+まず、.gitattributesファイルをプロジェクトのルートディレクトリに作成します。その後、次のような行を追加します。
+
+arduino
+Copy code
+* text eol=lf
+これにより、すべてのファイルがLFで終わるようになります。これは通常、Linux/Unix環境での標準です。
+
+.gitattributesファイルを作成してこれを追加したら、再度git add .を実行してみてください。警告が解消されるはずです。

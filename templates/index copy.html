@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    /* スタイルは前回提供したものと同じです */
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $("table tbody").sortable({
+        axis: "y",
+        handle: "td:first-child", // ドラッグ可能な要素
+        update: function(event, ui) {
+            // ドロップされた後の処理
+            var memoOrder = $(this).sortable("toArray", { attribute: "data-memo-id" });
+            // memoOrderには項目のIDが新しい順番で格納されます
+            console.log(memoOrder);
+            // ここで、memoOrderをサーバに送信して保存するなどの処理を行います
+        }
+    });
+});
+</script>
+
+<div class="container">
+    <h1>メモアプリ</h1>
+    <a href="/regist" class="btn btn-primary" role="button">新規登録</a>
+    {% if memo_list == [] %}
+        <p>メモは登録されていません</p>
+    {% else %}
+        <table>
+            <thead>
+                <tr>
+                    <th>タイトル</th>
+                    <th>メモ</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for memo in memo_list %}
+                    <tr data-memo-id="{{ memo.id }}">
+                        <td>{{ memo.title }}</td>   
+                        <td>{{ memo.body }}</td>
+                        <td>
+                            <a href="/{{ memo.id }}/edit" class="btn btn-primary" role="button">編集</a>
+                            <a href="/{{ memo.id }}/delete" class="btn btn-primary" role="button">削除</a>
+                        </td>                 
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+{% endblock %}
